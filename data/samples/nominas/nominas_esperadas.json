@@ -1,0 +1,186 @@
+[
+  {
+    "profile_id": "demo_01",
+    "gross": 2000.0,
+    "net": 1592.0,
+    "deductions": [
+      {
+        "code": "cc",
+        "label": "Contingencias comunes",
+        "amount": 94.0
+      },
+      {
+        "code": "unemployment",
+        "label": "Desempleo",
+        "amount": 31.0
+      },
+      {
+        "code": "training",
+        "label": "Formacion profesional",
+        "amount": 2.0
+      },
+      {
+        "code": "mei",
+        "label": "MEI",
+        "amount": 3.0
+      },
+      {
+        "code": "irpf",
+        "label": "IRPF",
+        "amount": 278.0
+      }
+    ],
+    "concepts": [
+      {
+        "code": "gross",
+        "label": "Salario bruto",
+        "explanation": "Cantidad total que figura como devengada antes de restar deducciones."
+      },
+      {
+        "code": "net",
+        "label": "Salario neto",
+        "explanation": "Cantidad que queda tras aplicar las deducciones al total devengado en la nómina simplificada."
+      }
+    ],
+    "source": "synthetic_pdf",
+    "warning": "Ejemplo ficticio para aprendizaje."
+  },
+  {
+    "profile_id": "demo_02",
+    "gross": 1000.0,
+    "net": 915.0,
+    "deductions": [
+      {
+        "code": "cc",
+        "label": "Contingencias comunes",
+        "amount": 47.0
+      },
+      {
+        "code": "unemployment",
+        "label": "Desempleo",
+        "amount": 15.5
+      },
+      {
+        "code": "training",
+        "label": "Formacion profesional",
+        "amount": 1.0
+      },
+      {
+        "code": "mei",
+        "label": "MEI",
+        "amount": 1.5
+      },
+      {
+        "code": "irpf",
+        "label": "IRPF",
+        "amount": 20.0
+      }
+    ],
+    "concepts": [
+      {
+        "code": "gross",
+        "label": "Salario bruto",
+        "explanation": "Cantidad total que figura como devengada antes de restar deducciones."
+      },
+      {
+        "code": "net",
+        "label": "Salario neto",
+        "explanation": "Cantidad que queda tras aplicar las deducciones al total devengado en la nómina simplificada."
+      }
+    ],
+    "source": "synthetic_pdf",
+    "warning": "Ejemplo ficticio para aprendizaje."
+  },
+  {
+    "profile_id": "demo_03",
+    "gross": 4200.0,
+    "net": 3019.8,
+    "deductions": [
+      {
+        "code": "cc",
+        "label": "Contingencias comunes",
+        "amount": 197.4
+      },
+      {
+        "code": "unemployment",
+        "label": "Desempleo",
+        "amount": 65.1
+      },
+      {
+        "code": "training",
+        "label": "Formacion profesional",
+        "amount": 4.2
+      },
+      {
+        "code": "mei",
+        "label": "MEI",
+        "amount": 6.3
+      },
+      {
+        "code": "irpf",
+        "label": "IRPF",
+        "amount": 907.2
+      }
+    ],
+    "concepts": [
+      {
+        "code": "gross",
+        "label": "Salario bruto",
+        "explanation": "Cantidad total que figura como devengada antes de restar deducciones."
+      },
+      {
+        "code": "net",
+        "label": "Salario neto",
+        "explanation": "Cantidad que queda tras aplicar las deducciones al total devengado en la nómina simplificada."
+      }
+    ],
+    "source": "synthetic_pdf",
+    "warning": "Ejemplo ficticio para aprendizaje."
+  },
+  {
+    "profile_id": "demo_04",
+    "gross": 2500.0,
+    "net": 1860.0,
+    "deductions": [
+      {
+        "code": "cc",
+        "label": "Contingencias comunes",
+        "amount": 117.5
+      },
+      {
+        "code": "unemployment",
+        "label": "Desempleo",
+        "amount": 38.75
+      },
+      {
+        "code": "training",
+        "label": "Formacion profesional",
+        "amount": 2.5
+      },
+      {
+        "code": "mei",
+        "label": "MEI",
+        "amount": 3.75
+      },
+      {
+        "code": "irpf",
+        "label": "IRPF",
+        "amount": 477.5
+      }
+    ],
+    "concepts": [
+      {
+        "code": "gross",
+        "label": "Salario bruto",
+        "explanation": "Cantidad total que figura como devengada antes de restar deducciones."
+      },
+      {
+        "code": "net",
+        "label": "Salario neto",
+        "explanation": "Cantidad que queda tras aplicar las deducciones al total devengado en la nómina simplificada."
+      }
+    ],
+    "source": "synthetic_pdf",
+    "warning": "Ejemplo ficticio para aprendizaje."
+  }
+]

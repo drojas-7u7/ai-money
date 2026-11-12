@@ -1,0 +1,5 @@
+# Dependencias aisladas para validar el módulo Dev 3 (el integrador mantiene requirements.txt)
+fastapi>=0.110,<1
+pydantic>=2,<3
+pytest>=8,<10
+httpx>=0.27,<1
