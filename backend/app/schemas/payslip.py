@@ -18,3 +18,4 @@ class PayslipResponse(BaseModel):
     concepts: list[PayslipConcept] = Field(default_factory=list)
     source: Literal['synthetic_pdf', 'demo_fixture'] = 'synthetic_pdf'
     warning: str = 'Ejemplo ficticio para aprendizaje.'
+
