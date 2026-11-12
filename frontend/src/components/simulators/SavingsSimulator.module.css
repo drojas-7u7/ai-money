@@ -1,0 +1,321 @@
+@import '../../styles/variables.css';
+
+.container {
+  padding: 24px;
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--header-blue);
+}
+
+/* Formulario */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--header-blue);
+}
+
+.unit {
+  font-weight: 400;
+  color: var(--text-main);
+  opacity: 0.6;
+}
+
+.optional {
+  font-weight: 400;
+  color: var(--text-main);
+  opacity: 0.5;
+}
+
+.input {
+  padding: 10px 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--text-main);
+  background: var(--bg-general);
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+
+.input:focus {
+  border-color: var(--cyan-accent);
+}
+
+.input:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.inputError {
+  border-color: var(--alert-red);
+}
+
+.fieldError {
+  font-size: 12px;
+  color: var(--alert-red);
+}
+
+/* Acciones del formulario */
+.formActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.primaryButton {
+  padding: 12px 24px;
+  background: var(--nav-dark);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.primaryButton:hover:not(:disabled) {
+  background: var(--header-blue);
+}
+
+.primaryButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.secondaryButton {
+  padding: 12px 20px;
+  background: transparent;
+  color: var(--header-blue);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.secondaryButton:hover:not(:disabled) {
+  border-color: var(--cyan-accent);
+  background: var(--cyan-light);
+}
+
+.secondaryButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Error backend */
+.errorBanner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #FEF2F2;
+  border: 1px solid var(--alert-red);
+  border-radius: 8px;
+  color: var(--alert-red);
+  font-size: 14px;
+}
+
+/* Resultados */
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Fila de resumen */
+.summaryRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.summaryCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.summaryLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-main);
+  opacity: 0.65;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.summaryAmount {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--success-green);
+}
+
+/* Badges de viabilidad */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.badgeGreen {
+  background: #DCFCE7;
+  color: #166534;
+  border: 1px solid var(--success-green);
+}
+
+.badgeRed {
+  background: #FEF2F2;
+  color: #991B1B;
+  border: 1px solid var(--alert-red);
+}
+
+.badgeNeutral {
+  background: var(--bg-general);
+  color: var(--text-main);
+  border: 1px solid var(--border-soft);
+  opacity: 0.75;
+}
+
+/* Explicación */
+.explanation {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px;
+  background: var(--cyan-light);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+}
+
+.explanationIcon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--header-blue);
+}
+
+.explanation p {
+  font-size: 15px;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+/* Tabla del plan */
+.planSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.planTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--header-blue);
+}
+
+.planTableWrapper {
+  max-height: 320px;
+  overflow-y: auto;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+}
+
+.planTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+}
+
+.th {
+  position: sticky;
+  top: 0;
+  padding: 10px 16px;
+  background: var(--header-blue);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  z-index: 1;
+}
+
+.thProgress {
+  width: 40%;
+}
+
+.planRow:hover {
+  background: var(--bg-general);
+}
+
+.td {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: var(--text-main);
+  border-top: 1px solid var(--border-soft);
+}
+
+.tdAmount {
+  font-weight: 700;
+  color: var(--success-green);
+}
+
+/* Barra de progreso por fila */
+.progressTrack {
+  height: 8px;
+  background: var(--bg-general);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--cyan-accent);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}

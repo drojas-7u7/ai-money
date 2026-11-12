@@ -1,4 +1,6 @@
+import { AlertTriangle } from 'lucide-react'
 import styles from './Layout.module.css'
+import logo from '../../assets/logo.png'
 
 const TABS = [
   { id: 'profile',   label: 'Perfil' },
@@ -14,7 +16,7 @@ function Layout({ activeTab, onTabChange, children }) {
     <div className={styles.root}>
       <aside className={styles.sidebar}>
         <div className={styles.brand}>
-          <span className={styles.brandName}>AI Money</span>
+          <img src={logo} alt="AI Money" className={styles.logo} />
         </div>
 
         <nav className={styles.nav} aria-label="Navegación principal">
@@ -30,12 +32,12 @@ function Layout({ activeTab, onTabChange, children }) {
           ))}
         </nav>
 
-        <p className={styles.sidebarNotice}>⚠ Demo educativa</p>
+        <p className={styles.sidebarNotice}><AlertTriangle size={12} /> Demo educativa</p>
       </aside>
 
       <div className={styles.main}>
         <div className={styles.demoBanner}>
-          ⚠ Demo educativa. No introduzcas datos reales.
+          <AlertTriangle size={14} /> Demo educativa. No introduzcas datos reales.
         </div>
         <div className={styles.content}>
           {children}
