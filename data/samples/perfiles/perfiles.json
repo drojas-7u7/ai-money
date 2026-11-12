@@ -1,0 +1,38 @@
+[
+  {
+    "profile_id": "demo_01",
+    "alias": "Alex (ficticio) · Primer empleo",
+    "monthly_income": 1592.0,
+    "fixed_expenses": 700,
+    "variable_expenses": 420,
+    "current_savings": 200,
+    "goal": "Fondo de emergencia"
+  },
+  {
+    "profile_id": "demo_02",
+    "alias": "Noa (ficticio) · Jornada parcial",
+    "monthly_income": 915.0,
+    "fixed_expenses": 520,
+    "variable_expenses": 300,
+    "current_savings": 100,
+    "goal": "Curso de formación"
+  },
+  {
+    "profile_id": "demo_03",
+    "alias": "Sam (ficticio) · Profesional senior",
+    "monthly_income": 3019.8,
+    "fixed_expenses": 1450,
+    "variable_expenses": 750,
+    "current_savings": 8000,
+    "goal": "Entrada de vivienda"
+  },
+  {
+    "profile_id": "demo_04",
+    "alias": "Dani (ficticio) · Complementos variables",
+    "monthly_income": 1860.0,
+    "fixed_expenses": 1100,
+    "variable_expenses": 850,
+    "current_savings": 50,
+    "goal": "Reducir gastos y crear colchón"
+  }
+]
