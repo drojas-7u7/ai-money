@@ -40,7 +40,7 @@ export function AppProvider({ children }) {
   const selectProfile = useCallback((newProfile) => run(async () => {
     const saved = await api.updateProfile(newProfile)
     setProfile(saved)
-    setSummary(await api.getSummary())
+    setSummary(api.addBreakdown(await api.getSummary(), saved))
     setSavings(null)
     setLoan(null)
     setPayslip(null)
@@ -82,7 +82,8 @@ export function AppProvider({ children }) {
     savings_monthly_contribution: savings?.monthly_contribution ?? null,
   }), [profile, summary, payslip, loan, savings])
 
-  const askChat = useCallback((message) => run(async () => {
+  const askChat = useCallback((rawMessage) => run(async () => {
+    const message = rawMessage.slice(0, MAX_CONTENT) // mismo límite que el esquema
     const history = messages
       .slice(-MAX_HISTORY)
       // La pregunta de comprobación viaja dentro del mensaje del asistente,
