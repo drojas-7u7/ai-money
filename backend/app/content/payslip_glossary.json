@@ -1,0 +1,92 @@
+[
+  {
+    "code": "gross",
+    "label": "Salario bruto",
+    "simple_explanation": "Cantidad total que figura como devengada antes de restar deducciones.",
+    "example": "Si el bruto es 2000 €, todavía hay que descontar las retenciones y aportaciones correspondientes."
+  },
+  {
+    "code": "net",
+    "label": "Salario neto",
+    "simple_explanation": "Cantidad que queda tras aplicar las deducciones al total devengado en la nómina simplificada.",
+    "example": "Si el bruto es 2000 € y las deducciones suman 408 €, el neto es 1592 €."
+  },
+  {
+    "code": "base_salary",
+    "label": "Salario base",
+    "simple_explanation": "Retribución fijada por el convenio o contrato para el puesto, sin incluir necesariamente complementos.",
+    "example": "Un salario base de 1500 € puede completarse con 500 € de complementos."
+  },
+  {
+    "code": "supplements",
+    "label": "Complementos salariales",
+    "simple_explanation": "Importes añadidos por condiciones del puesto, del trabajo u otras circunstancias pactadas.",
+    "example": "Un complemento de 200 € se suma al salario base."
+  },
+  {
+    "code": "irpf",
+    "label": "Retención de IRPF",
+    "simple_explanation": "Parte del salario que la empresa ingresa a cuenta del Impuesto sobre la Renta. No es necesariamente el impuesto final de la declaración.",
+    "example": "Una retención ficticia del 10% sobre una base ilustrativa de 2000 € sería 200 €."
+  },
+  {
+    "code": "social_security",
+    "label": "Cotizaciones a la Seguridad Social",
+    "simple_explanation": "Aportaciones que financian prestaciones y coberturas del sistema. En la nómina hay una parte a cargo de la persona trabajadora; la empresa soporta otras.",
+    "example": "Las cotizaciones de la parte trabajadora se reflejan como deducciones."
+  },
+  {
+    "code": "cc",
+    "label": "Contingencias comunes",
+    "simple_explanation": "Cotización relacionada con prestaciones como incapacidad temporal por enfermedad común y jubilación.",
+    "example": "En un ejemplo sencillo, 4,70% de una base ficticia de 2000 € son 94 €."
+  },
+  {
+    "code": "unemployment",
+    "label": "Desempleo",
+    "simple_explanation": "Cotización vinculada a la protección por desempleo cuando corresponde.",
+    "example": "En un caso ordinario ficticio, el 1,55% de 2000 € son 31 €."
+  },
+  {
+    "code": "training",
+    "label": "Formación profesional",
+    "simple_explanation": "Cotización destinada al sistema de formación profesional para el empleo.",
+    "example": "El 0,10% de 2000 € equivale a 2 €."
+  },
+  {
+    "code": "mei",
+    "label": "Mecanismo de Equidad Intergeneracional (MEI)",
+    "simple_explanation": "Cotización adicional establecida para reforzar la sostenibilidad del sistema de pensiones.",
+    "example": "En 2026, el 0,15% de una base ficticia de 2000 € es 3 € para la persona trabajadora."
+  },
+  {
+    "code": "contribution_base",
+    "label": "Base de cotización",
+    "simple_explanation": "Importe de referencia sobre el que se aplican tipos de cotización; puede ser distinto del bruto mensual.",
+    "example": "Las pagas extras prorrateadas pueden influir en la base de cotización."
+  },
+  {
+    "code": "extra_pay",
+    "label": "Pagas extraordinarias",
+    "simple_explanation": "Retribuciones adicionales que pueden abonarse en fechas concretas o estar prorrateadas.",
+    "example": "Las pagas extras prorrateadas se distribuyen entre las mensualidades."
+  },
+  {
+    "code": "deductions",
+    "label": "Deducciones",
+    "simple_explanation": "Importes que se restan al total devengado para calcular el líquido a percibir.",
+    "example": "En la nómina simplificada, incluyen IRPF y cotizaciones de la persona empleada."
+  },
+  {
+    "code": "tin",
+    "label": "TIN",
+    "simple_explanation": "Tipo de interés nominal: porcentaje aplicado al capital, sin reflejar por sí solo todos los costes de un préstamo.",
+    "example": "TIN del 6% anual equivale al 0,5% mensual nominal en la simulación."
+  },
+  {
+    "code": "tae",
+    "label": "TAE",
+    "simple_explanation": "Tasa anual equivalente que facilita comparar productos incorporando periodicidad y costes según la normativa aplicable.",
+    "example": "Dos préstamos con el mismo TIN pueden tener TAE distintas por sus condiciones y comisiones."
+  }
+]
