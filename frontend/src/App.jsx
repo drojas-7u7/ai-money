@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { ArrowLeft } from 'lucide-react'
 import { useAppState } from './state/AppContext'
+import Landing from './components/landing/Landing'
 import Layout from './components/layout/Layout'
 import ProfileSelector from './components/profile/ProfileSelector'
 import Dashboard from './components/dashboard/Dashboard'
@@ -7,9 +9,11 @@ import SavingsSimulator from './components/simulators/SavingsSimulator'
 import LoanSimulator from './components/simulators/LoanSimulator'
 import PayslipUploader from './components/payslip/PayslipUploader'
 import Chat from './components/chat/Chat'
+import styles from './App.module.css'
 
 function App() {
-  const [activeTab, setActiveTab] = useState('profile')
+  const [view, setView] = useState('landing') // 'landing' | 'pick' | 'demo'
+  const [activeTab, setActiveTab] = useState('dashboard')
 
   const {
     profile, summary, savings, loan, payslip, messages,
@@ -18,21 +22,41 @@ function App() {
     clearError,
   } = useAppState()
 
+  const handlePickProfile = async (profileData) => {
+    const saved = await selectProfile(profileData)
+    if (saved) {
+      setActiveTab('dashboard')
+      setView('demo')
+    }
+  }
+
   const handleTabChange = (tab) => {
     clearError()
     setActiveTab(tab)
   }
 
-  return (
-    <Layout activeTab={activeTab} onTabChange={handleTabChange}>
-      {activeTab === 'profile' && (
+  if (view === 'landing') {
+    return <Landing onEnterDemo={() => setView('pick')} />
+  }
+
+  if (view === 'pick') {
+    return (
+      <div className={styles.pickerPage}>
+        <button className={styles.backButton} onClick={() => setView('landing')}>
+          <ArrowLeft size={16} /> Volver
+        </button>
         <ProfileSelector
           activeProfileId={profile?.profile_id ?? null}
-          onSelectProfile={selectProfile}
+          onSelectProfile={handlePickProfile}
           isLoading={loading}
           error={error}
         />
-      )}
+      </div>
+    )
+  }
+
+  return (
+    <Layout activeTab={activeTab} onTabChange={handleTabChange} onGoHome={() => setView('landing')} profileName={profile?.alias ?? null}>
       {activeTab === 'dashboard' && (
         <Dashboard
           data={summary}

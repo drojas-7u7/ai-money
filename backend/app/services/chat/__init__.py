@@ -7,7 +7,7 @@ from app.services.chat.fallback import build_fallback_response
 
 logger = logging.getLogger("ai_money")
 
-MODEL = "llama-3.3-70b-versatile"
+MODEL = "llama-3.1-70b-versatile"
 
 SYSTEM_PROMPT = """Eres un asistente educativo de finanzas personales para la plataforma AI Money.
 Tu objetivo es explicar conceptos financieros de forma clara y sencilla, ayudando al usuario a entender su situación económica.

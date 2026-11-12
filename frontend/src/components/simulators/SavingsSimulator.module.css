@@ -319,3 +319,10 @@
   border-radius: 4px;
   transition: width 0.3s ease;
 }
+
+@media (max-width: 768px) {
+  .container { padding: 16px; }
+  .row { grid-template-columns: 1fr; }
+  .summaryRow { grid-template-columns: 1fr; }
+  .planTableWrapper { overflow-x: auto; }
+}

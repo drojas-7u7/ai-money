@@ -313,3 +313,10 @@
 .resetButton:hover {
   background: var(--header-blue);
 }
+
+@media (max-width: 768px) {
+  .container { padding: 16px; }
+  .grossNetRow { flex-direction: column; }
+  .conceptsGrid { grid-template-columns: 1fr; }
+  .table { display: block; overflow-x: auto; }
+}

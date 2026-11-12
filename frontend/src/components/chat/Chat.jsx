@@ -106,15 +106,15 @@ function Chat({ messages = [], onSend, isLoading = false, error = null, profile 
             value={text}
             onChange={handleInput}
             onKeyDown={handleKeyDown}
-            placeholder={profile ? 'Escribe tu pregunta...' : 'Selecciona un perfil primero'}
-            disabled={isLoading || !profile}
+            placeholder="Escribe tu pregunta..."
+            disabled={isLoading}
             rows={1}
             maxLength={2000}
           />
           <button
             type="submit"
             className={styles.sendButton}
-            disabled={isLoading || !text.trim() || !profile}
+            disabled={isLoading || !text.trim()}
           >
             {isLoading ? <Loader2 size={18} className={styles.spinIcon} /> : <Send size={18} />}
           </button>

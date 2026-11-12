@@ -18,15 +18,30 @@ def stream(proc, label, color):
     for line in proc.stdout:
         print(f"{color}[{label}]{RESET} {line}", end="")
 
+NODE_DIRS = [
+    r"C:\Program Files\nodejs",
+    r"C:\Program Files (x86)\nodejs",
+]
+
+def find_node_dir():
+    for d in NODE_DIRS:
+        if Path(d).exists():
+            return d
+    return None
+
 def find_npm():
-    candidates = [
-        r"C:\Program Files\nodejs\npm.cmd",
-        r"C:\Program Files (x86)\nodejs\npm.cmd",
-    ]
-    for path in candidates:
-        if Path(path).exists():
-            return path
+    node_dir = find_node_dir()
+    if node_dir:
+        candidate = str(Path(node_dir) / "npm.cmd")
+        if Path(candidate).exists():
+            return candidate
     return "npm"
+
+import os
+node_dir = find_node_dir()
+env = os.environ.copy()
+if node_dir and node_dir not in env.get("PATH", ""):
+    env["PATH"] = node_dir + os.pathsep + env.get("PATH", "")
 
 npm = find_npm()
 
@@ -44,6 +59,7 @@ frontend = subprocess.Popen(
     stdout=subprocess.PIPE,
     stderr=subprocess.STDOUT,
     text=True,
+    env=env,
 )
 
 print(f"{BOLD}Servidores arrancando...{RESET}")

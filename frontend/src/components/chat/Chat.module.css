@@ -240,3 +240,8 @@
 .spinIcon {
   animation: spin 1s linear infinite;
 }
+
+@media (max-width: 768px) {
+  .container { padding: 16px; height: calc(100vh - 120px); }
+  .bubble { max-width: 88%; }
+}

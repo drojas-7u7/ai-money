@@ -173,3 +173,169 @@
   color: var(--header-blue);
   font-style: italic;
 }
+
+/* ── Tarjeta "Crear perfil" ── */
+.createCard {
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 2px dashed var(--border-soft);
+  background: var(--bg-general);
+  min-height: 180px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.createCard:hover:not(:disabled) {
+  border-color: var(--cyan-accent);
+  background: var(--cyan-light);
+}
+
+.createCardActive {
+  border-color: var(--cyan-accent);
+  background: var(--cyan-light);
+}
+
+.createIcon {
+  color: var(--cyan-accent);
+  opacity: 0.8;
+}
+
+.createLabel {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--header-blue);
+}
+
+.createHint {
+  font-size: 13px;
+  color: var(--text-main);
+  opacity: 0.55;
+  text-align: center;
+}
+
+/* ── Formulario de creación ── */
+.formCard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--cyan-accent);
+  border-radius: 14px;
+  margin-top: 4px;
+}
+
+.formHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.formTitle {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--header-blue);
+}
+
+.formClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.formClose:hover {
+  background: var(--bg-general);
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formRowThree {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.formRowTwo {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+}
+
+.formLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--header-blue);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.optional {
+  font-weight: 400;
+  color: var(--text-main);
+  opacity: 0.5;
+}
+
+.formInput {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--text-main);
+  background: var(--bg-general);
+  outline: none;
+  transition: border-color 0.15s;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.formInput:focus {
+  border-color: var(--cyan-accent);
+}
+
+.formInput::placeholder {
+  color: var(--text-main);
+  opacity: 0.35;
+}
+
+.formSubmit {
+  align-self: flex-start;
+  padding: 12px 28px;
+  background: var(--nav-dark);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.formSubmit:hover:not(:disabled) {
+  background: var(--header-blue);
+}
+
+.formSubmit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .container { padding: 16px; }
+  .grid { grid-template-columns: 1fr; }
+  .formRowThree { grid-template-columns: 1fr; }
+  .formRowTwo { grid-template-columns: 1fr; }
+  .formCard { padding: 16px; }
+}
