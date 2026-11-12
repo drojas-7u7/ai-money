@@ -8,6 +8,7 @@ import * as api from '../api'
 const AppContext = createContext(null)
 
 const MAX_HISTORY = 4 // el contrato limita el historial del chat a 4 mensajes
+const MAX_CONTENT = 2000 // el esquema limita cada mensaje a 2000 caracteres
 
 export function AppProvider({ children }) {
   const [profile, setProfile] = useState(null)
@@ -84,7 +85,12 @@ export function AppProvider({ children }) {
   const askChat = useCallback((message) => run(async () => {
     const history = messages
       .slice(-MAX_HISTORY)
-      .map(({ role, content }) => ({ role, content }))
+      // La pregunta de comprobación viaja dentro del mensaje del asistente,
+      // para que la IA sepa qué preguntó si el usuario le responde.
+      .map(({ role, content, check_question }) => ({
+        role,
+        content: (check_question ? `${content}\n\n${check_question}` : content).slice(0, MAX_CONTENT),
+      }))
     const result = await api.sendChat({ message, history, context: chatContext })
     setMessages((prev) => [
       ...prev,
