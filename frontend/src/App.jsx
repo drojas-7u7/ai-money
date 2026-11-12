@@ -1,40 +1,62 @@
 import { useState } from 'react'
+import { ArrowLeft } from 'lucide-react'
 import { useAppState } from './state/AppContext'
+import Landing from './components/landing/Landing'
 import Layout from './components/layout/Layout'
 import ProfileSelector from './components/profile/ProfileSelector'
 import Dashboard from './components/dashboard/Dashboard'
 import SavingsSimulator from './components/simulators/SavingsSimulator'
 import LoanSimulator from './components/simulators/LoanSimulator'
-
-// Stubs temporales
-function PayslipUploader() { return <p style={{ padding: 24 }}>Nómina — próximamente</p> }
-function Chat()            { return <p style={{ padding: 24 }}>Chat IA — próximamente</p> }
+import PayslipUploader from './components/payslip/PayslipUploader'
+import Chat from './components/chat/Chat'
+import styles from './App.module.css'
 
 function App() {
-  const [activeTab, setActiveTab] = useState('profile')
+  const [view, setView] = useState('landing') // 'landing' | 'pick' | 'demo'
+  const [activeTab, setActiveTab] = useState('dashboard')
 
   const {
-    profile, summary, savings, loan,
+    profile, summary, savings, loan, payslip, messages,
     loading, error,
-    selectProfile, runSavings, runLoan,
+    selectProfile, runSavings, runLoan, analyzePayslip, askChat,
     clearError,
   } = useAppState()
+
+  const handlePickProfile = async (profileData) => {
+    const saved = await selectProfile(profileData)
+    if (saved) {
+      setActiveTab('dashboard')
+      setView('demo')
+    }
+  }
 
   const handleTabChange = (tab) => {
     clearError()
     setActiveTab(tab)
   }
 
-  return (
-    <Layout activeTab={activeTab} onTabChange={handleTabChange}>
-      {activeTab === 'profile' && (
+  if (view === 'landing') {
+    return <Landing onEnterDemo={() => setView('pick')} />
+  }
+
+  if (view === 'pick') {
+    return (
+      <div className={styles.pickerPage}>
+        <button className={styles.backButton} onClick={() => setView('landing')}>
+          <ArrowLeft size={16} /> Volver
+        </button>
         <ProfileSelector
           activeProfileId={profile?.profile_id ?? null}
-          onSelectProfile={selectProfile}
+          onSelectProfile={handlePickProfile}
           isLoading={loading}
           error={error}
         />
-      )}
+      </div>
+    )
+  }
+
+  return (
+    <Layout activeTab={activeTab} onTabChange={handleTabChange} onGoHome={() => setView('landing')} profileName={profile?.alias ?? null}>
       {activeTab === 'dashboard' && (
         <Dashboard
           data={summary}
@@ -60,8 +82,24 @@ function App() {
           error={error}
         />
       )}
-      {activeTab === 'payslip' && <PayslipUploader />}
-      {activeTab === 'chat'    && <Chat />}
+      {activeTab === 'payslip' && (
+        <PayslipUploader
+          result={payslip}
+          onUpload={analyzePayslip}
+          onReset={() => {}}
+          isLoading={loading}
+          error={error}
+        />
+      )}
+      {activeTab === 'chat' && (
+        <Chat
+          messages={messages}
+          onSend={askChat}
+          isLoading={loading}
+          error={error}
+          profile={profile}
+        />
+      )}
     </Layout>
   )
 }

@@ -73,14 +73,22 @@ export function AppProvider({ children }) {
   }), [run])
 
   // Solo los datos agregados que permite el contrato; nunca nombres ni la nómina completa.
-  const chatContext = useMemo(() => ({
-    monthly_income: profile?.monthly_income ?? null,
-    available: summary?.available ?? null,
-    payslip_gross: payslip?.gross ?? null,
-    payslip_net: payslip?.net ?? null,
-    loan_monthly_payment: loan?.monthly_payment ?? null,
-    savings_monthly_contribution: savings?.monthly_contribution ?? null,
-  }), [profile, summary, payslip, loan, savings])
+  const chatContext = useMemo(() => {
+    let financial_level = null
+    if (quiz.pre !== null) {
+      const pct = quiz.pre.score / quiz.pre.total
+      financial_level = pct <= 0.2 ? 'principiante' : pct <= 0.6 ? 'intermedio' : 'avanzado'
+    }
+    return {
+      monthly_income: profile?.monthly_income ?? null,
+      available: summary?.available ?? null,
+      payslip_gross: payslip?.gross ?? null,
+      payslip_net: payslip?.net ?? null,
+      loan_monthly_payment: loan?.monthly_payment ?? null,
+      savings_monthly_contribution: savings?.monthly_contribution ?? null,
+      financial_level,
+    }
+  }, [profile, summary, payslip, loan, savings, quiz.pre])
 
   const askChat = useCallback((rawMessage) => run(async () => {
     const message = rawMessage.slice(0, MAX_CONTENT) // mismo límite que el esquema

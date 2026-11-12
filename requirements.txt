@@ -11,7 +11,7 @@ groq==1.7.0
 
 # ── Procesado de PDF (nóminas) ───────────────────────────
 pdfplumber==0.11.4
-pypdf==4.3.1  # needed by Render for PDF processing
+pypdf==4.3.1
 
 # ── Variables de entorno ─────────────────────────────────
 python-dotenv==1.0.1

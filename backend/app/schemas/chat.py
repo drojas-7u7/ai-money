@@ -12,6 +12,7 @@ class ChatContext(BaseModel):
     payslip_net: float | None = None
     loan_monthly_payment: float | None = None
     savings_monthly_contribution: float | None = None
+    financial_level: str | None = None
 
 class ChatRequest(BaseModel):
     message: str = Field(min_length=1, max_length=2000)
