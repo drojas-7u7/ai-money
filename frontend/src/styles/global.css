@@ -1,0 +1,23 @@
+@import './variables.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg-general);
+  color: var(--text-main);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  color: var(--header-blue);
+}
+
+button, input, textarea {
+  font-family: inherit;
+}
