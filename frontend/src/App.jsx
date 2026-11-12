@@ -9,6 +9,7 @@ import SavingsSimulator from './components/simulators/SavingsSimulator'
 import LoanSimulator from './components/simulators/LoanSimulator'
 import PayslipUploader from './components/payslip/PayslipUploader'
 import Chat from './components/chat/Chat'
+import EvalQuiz from './components/quiz/EvalQuiz'
 import styles from './App.module.css'
 
 function App() {
@@ -100,6 +101,7 @@ function App() {
           profile={profile}
         />
       )}
+      {activeTab === 'eval' && <EvalQuiz />}
     </Layout>
   )
 }

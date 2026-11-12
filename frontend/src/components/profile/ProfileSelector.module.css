@@ -301,6 +301,17 @@
   cursor: default;
 }
 
+.quizOptionSelected {
+  border-color: var(--cyan-accent);
+  background: var(--cyan-light);
+  color: var(--header-blue);
+}
+
+.quizOptionSelected .quizOptionLetter {
+  background: var(--cyan-accent);
+  color: #ffffff;
+}
+
 .quizOptionCorrect {
   border-color: var(--success-green);
   background: #F0FDF4;

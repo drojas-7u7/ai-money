@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AlertTriangle, Target, TrendingUp, TrendingDown, PlusCircle, X, CheckCircle2, XCircle } from 'lucide-react'
+import { AlertTriangle, Target, TrendingUp, TrendingDown, PlusCircle, CheckCircle2, XCircle } from 'lucide-react'
 import { useAppState } from '../../state/AppContext'
 import styles from './ProfileSelector.module.css'
 import profiles from '../../data/perfiles.json'
@@ -52,6 +52,7 @@ const QUESTIONS = [
       '5 / 5 — Muy seguro/a',
     ],
     correct: 2,
+    selfAssessment: true,
   },
   {
     id: 'q4',
@@ -389,9 +390,11 @@ function ProfileSelector({ activeProfileId = null, onSelectProfile, isLoading = 
           <div className={styles.quizOptions}>
             {q.options.map((opt, i) => {
               let cls = styles.quizOption
-              if (selected !== null) {
+              if (selected !== null && !q.selfAssessment) {
                 if (i === q.correct) cls = `${styles.quizOption} ${styles.quizOptionCorrect}`
-                else if (i === selected && i !== q.correct) cls = `${styles.quizOption} ${styles.quizOptionWrong}`
+                else if (i === selected) cls = `${styles.quizOption} ${styles.quizOptionWrong}`
+              } else if (selected !== null && q.selfAssessment && i === selected) {
+                cls = `${styles.quizOption} ${styles.quizOptionSelected}`
               }
               return (
                 <button
