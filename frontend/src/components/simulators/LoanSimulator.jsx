@@ -5,6 +5,14 @@ import styles from './LoanSimulator.module.css'
 const INITIAL_FORM = { amount: '', months: '', annual_rate: '' }
 const INITIAL_ERRORS = { amount: '', months: '' }
 
+// Acepta: 1500 · 1.500 · 1500,50 · 1.500,50 · 1500.50
+const parseAmount = (val) => {
+  const v = val.trim().replace(/\s/g, '')
+  if (v.includes(',')) return parseFloat(v.replace(/\./g, '').replace(',', '.'))
+  if (/\.\d{3}$/.test(v)) return parseFloat(v.replace(/\./g, ''))
+  return parseFloat(v)
+}
+
 const RISK_CONFIG = {
   low:    { label: 'Riesgo bajo',    icon: ShieldCheck, colorClass: 'riskLow' },
   medium: { label: 'Riesgo medio',   icon: ShieldAlert, colorClass: 'riskMedium' },
@@ -35,7 +43,8 @@ function LoanSimulator({ result = null, onSimulate, isLoading = false, error = n
   const validate = () => {
     const errors = { amount: '', months: '' }
     let valid = true
-    if (!form.amount || Number(form.amount) <= 0) {
+    const parsedAmount = parseAmount(form.amount)
+    if (!form.amount || isNaN(parsedAmount) || parsedAmount <= 0) {
       errors.amount = 'Introduce un importe mayor que 0 €.'
       valid = false
     }
@@ -57,7 +66,7 @@ function LoanSimulator({ result = null, onSimulate, isLoading = false, error = n
     e.preventDefault()
     if (!validate() || isLoading) return
     onSimulate({
-      amount: Number(form.amount),
+      amount: parseAmount(form.amount),
       months: Number(form.months),
       annual_rate: Number(form.annual_rate) || 0,
     })
@@ -82,14 +91,13 @@ function LoanSimulator({ result = null, onSimulate, isLoading = false, error = n
             <input
               id="amount"
               name="amount"
-              type="number"
+              type="text"
+              inputMode="decimal"
               value={form.amount}
               onChange={handleChange}
               placeholder="5000"
               className={`${styles.input} ${fieldErrors.amount ? styles.inputError : ''}`}
               disabled={isLoading}
-              min={0.01}
-              step={0.01}
             />
             {fieldErrors.amount && <span className={styles.fieldError}>{fieldErrors.amount}</span>}
           </div>
