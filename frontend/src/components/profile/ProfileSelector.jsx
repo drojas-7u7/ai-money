@@ -45,12 +45,11 @@ const QUESTIONS = [
   },
   {
     id: 'q3',
-    text: '¿Qué porcentaje de ingresos se recomienda habitualmente destinar al ahorro?',
+    text: 'Del 1 al 5, ¿cómo de seguro/a te sientes a la hora de tomar decisiones sobre préstamos o interpretar tu nómina?',
     options: [
-      'El 2-3 %',
-      'El 5 %',
-      'Entre el 10 % y el 20 %',
-      'No hace falta ahorrar si no sobra dinero',
+      '1 / 5 — Nada seguro/a',
+      '3 / 5',
+      '5 / 5 — Muy seguro/a',
     ],
     correct: 2,
   },
@@ -67,12 +66,11 @@ const QUESTIONS = [
   },
   {
     id: 'q5',
-    text: 'Si la cuota mensual de un préstamo supera el 35 % de tus ingresos netos, ¿qué indica?',
+    text: 'Si vas a pedir un préstamo y quieres conocer el coste real total, incluyendo intereses, comisiones y gastos, ¿qué indicador debes mirar?',
     options: [
-      'Que el préstamo tiene un tipo de interés muy bajo',
-      'Que el plazo de devolución es muy corto',
-      'Que el nivel de endeudamiento puede ser arriesgado',
-      'Nada en especial, es un porcentaje habitual',
+      'El TIN (Tipo de Interés Nominal)',
+      'La cuota mensual',
+      'La TAE (Tasa Anual Equivalente)',
     ],
     correct: 2,
   },
