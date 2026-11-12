@@ -1,0 +1,13 @@
+:root {
+  --bg-general:    #F4F7F9;
+  --bg-card:       #FFFFFF;
+  --nav-dark:      #0F2537;
+  --header-blue:   #1B3B5A;
+  --cyan-accent:   #00A8E8;
+  --cyan-light:    #E0F7FA;
+  --text-main:     #1E293B;
+  --alert-red:     #EF4444;
+  --warning-amber: #F59E0B;
+  --success-green: #10B981;
+  --border-soft:   #CBD5E1;
+}

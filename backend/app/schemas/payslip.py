@@ -1,26 +1,21 @@
-from typing import List, Optional
+from typing import Literal
 from pydantic import BaseModel, Field
 
+class PayslipDeduction(BaseModel):
+    code: str
+    label: str
+    amount: float = Field(ge=0)
 
-class DeductionItem(BaseModel):
-    code: str = Field(..., description="Código identificador de la deducción (ej: cc, unemployment, irpf)")
-    label: str = Field(..., description="Etiqueta descriptiva en lenguaje claro")
-    amount: float = Field(..., description="Importe deducido en euros")
-
-
-class ConceptItem(BaseModel):
-    code: str = Field(..., description="Código del concepto explicado (ej: gross, net, cc)")
-    label: str = Field(..., description="Nombre del concepto")
-    explanation: str = Field(..., description="Explicación pedagógica simplificada")
-
+class PayslipConcept(BaseModel):
+    code: str
+    label: str
+    explanation: str
 
 class PayslipResponse(BaseModel):
-    gross: float = Field(..., description="Salario bruto mensual en euros")
-    net: float = Field(..., description="Salario neto mensual en euros")
-    deductions: List[DeductionItem] = Field(default_factory=list, description="Desglose de deducciones aplicadas")
-    concepts: List[ConceptItem] = Field(default_factory=list, description="Glosario didáctico de conceptos relevantes")
-    source: str = Field(default="synthetic_pdf", description="Origen de los datos procesados")
-    warning: Optional[str] = Field(
-        default="Ejemplo ficticio para aprendizaje.",
-        description="Aviso didáctico de seguridad y simulación"
-    )
+    gross: float = Field(ge=0)
+    net: float = Field(ge=0)
+    deductions: list[PayslipDeduction] = Field(default_factory=list)
+    concepts: list[PayslipConcept] = Field(default_factory=list)
+    source: Literal['synthetic_pdf', 'demo_fixture'] = 'synthetic_pdf'
+    warning: str = 'Ejemplo ficticio para aprendizaje.'
+

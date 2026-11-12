@@ -11,7 +11,7 @@ from fastapi import HTTPException, status
 from groq import Groq
 import pypdf
 
-from app.schemas.payslip import ConceptItem, DeductionItem, PayslipResponse
+from app.schemas.payslip import PayslipConcept, PayslipDeduction, PayslipResponse
 
 # Cargar variables de entorno desde .env
 load_dotenv()
@@ -187,7 +187,7 @@ class PayslipExtractor:
             return parse_spanish_number(match.group(1))
         return None
 
-    def parse_payroll_data_fallback(self, text: str) -> Tuple[float, float, List[DeductionItem]]:
+    def parse_payroll_data_fallback(self, text: str) -> Tuple[float, float, List[PayslipDeduction]]:
         """
         Método de fallback determinista (expresiones regulares).
         Se ejecuta cuando Groq no está disponible o falla su respuesta.
@@ -229,16 +229,16 @@ class PayslipExtractor:
             net = round(gross - total_deductions, 2)
 
         deductions_list = [
-            DeductionItem(code="cc", label=self.glossary.get("cc", {}).get("label", "Contingencias comunes"), amount=cc),
-            DeductionItem(code="unemployment", label=self.glossary.get("unemployment", {}).get("label", "Desempleo"), amount=unemployment),
-            DeductionItem(code="training", label=self.glossary.get("training", {}).get("label", "Formacion profesional"), amount=training),
-            DeductionItem(code="mei", label=self.glossary.get("mei", {}).get("label", "MEI"), amount=mei),
-            DeductionItem(code="irpf", label=self.glossary.get("irpf", {}).get("label", "IRPF"), amount=irpf),
+            PayslipDeduction(code="cc", label=self.glossary.get("cc", {}).get("label", "Contingencias comunes"), amount=cc),
+            PayslipDeduction(code="unemployment", label=self.glossary.get("unemployment", {}).get("label", "Desempleo"), amount=unemployment),
+            PayslipDeduction(code="training", label=self.glossary.get("training", {}).get("label", "Formacion profesional"), amount=training),
+            PayslipDeduction(code="mei", label=self.glossary.get("mei", {}).get("label", "MEI"), amount=mei),
+            PayslipDeduction(code="irpf", label=self.glossary.get("irpf", {}).get("label", "IRPF"), amount=irpf),
         ]
 
         return gross, net, deductions_list
 
-    def _extract_with_groq_text(self, text: str, client: Groq) -> Tuple[float, float, List[DeductionItem]]:
+    def _extract_with_groq_text(self, text: str, client: Groq) -> Tuple[float, float, List[PayslipDeduction]]:
         """Envía el texto extraído del PDF a Groq para estructurar la nómina."""
         prompt = (
             "Eres un asistente analizador de nóminas didácticas. "
@@ -277,7 +277,7 @@ class PayslipExtractor:
         gross = float(data["gross"])
         net = float(data["net"])
         deductions = [
-            DeductionItem(
+            PayslipDeduction(
                 code=d["code"],
                 label=d.get("label", self.glossary.get(d["code"], {}).get("label", d["code"])),
                 amount=float(d["amount"])
@@ -286,7 +286,7 @@ class PayslipExtractor:
         ]
         return gross, net, deductions
 
-    def _extract_with_groq_vision(self, image_bytes: bytes, mime_type: str, client: Groq) -> Tuple[float, float, List[DeductionItem]]:
+    def _extract_with_groq_vision(self, image_bytes: bytes, mime_type: str, client: Groq) -> Tuple[float, float, List[PayslipDeduction]]:
         """Envía una imagen de nómina directamente a Groq Vision."""
         base64_image = base64.b64encode(image_bytes).decode("utf-8")
         prompt = (
@@ -335,7 +335,7 @@ class PayslipExtractor:
         gross = float(data["gross"])
         net = float(data["net"])
         deductions = [
-            DeductionItem(
+            PayslipDeduction(
                 code=d["code"],
                 label=d.get("label", self.glossary.get(d["code"], {}).get("label", d["code"])),
                 amount=float(d["amount"])
@@ -344,15 +344,15 @@ class PayslipExtractor:
         ]
         return gross, net, deductions
 
-    def _build_concepts(self) -> List[ConceptItem]:
+    def _build_concepts(self) -> List[PayslipConcept]:
         """Crea la lista de conceptos explicativos pedagógicos."""
         return [
-            ConceptItem(
+            PayslipConcept(
                 code="gross",
                 label=self.glossary.get("gross", {}).get("label", "Salario bruto"),
                 explanation=self.glossary.get("gross", {}).get("explanation", "Cantidad total que figura como devengada antes de restar deducciones.")
             ),
-            ConceptItem(
+            PayslipConcept(
                 code="net",
                 label=self.glossary.get("net", {}).get("label", "Salario neto"),
                 explanation=self.glossary.get("net", {}).get("explanation", "Cantidad que queda tras aplicar las deducciones al total devengado en la nómina simplificada.")
