@@ -9,6 +9,7 @@ const TABS = [
   { id: 'loan',      label: 'Préstamo' },
   { id: 'payslip',   label: 'Nómina' },
   { id: 'chat',      label: 'Chat IA' },
+  { id: 'eval',      label: 'Evaluar Aprendizaje' },
 ]
 
 function Layout({ activeTab, onTabChange, onGoHome, profileName, children }) {
