@@ -14,6 +14,20 @@ export const updateProfile = (profile) => apiRequest('/profile', { method: 'PUT'
 // Finanzas (Dev 3)
 export const getSummary = () => apiRequest('/finance/summary')
 
+// Añade al resumen el desglose de gastos (fijos / variables) para la gráfica.
+// Se calcula con el perfil, sin cambiar el contrato del backend.
+export const addBreakdown = (summary, profile) => ({
+  ...summary,
+  breakdown: { fixed: profile.fixed_expenses, variable: profile.variable_expenses },
+})
+
+// Para pantallas que guardan su propio perfil: lo envía al backend (el resumen se
+// calcula sobre el perfil activo del backend), pide el resumen y añade el desglose.
+export async function getSummaryForProfile(profile) {
+  await updateProfile(profile)
+  return addBreakdown(await getSummary(), profile)
+}
+
 // { goal, target_amount, current_saved, months }
 export const simulateSavings = (request) =>
   apiRequest('/finance/savings', { method: 'POST', body: request })
