@@ -21,11 +21,12 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.brandName {
-  font-size: 20px;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 0.03em;
+.logo {
+  width: 100%;
+  max-width: 160px;
+  height: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .nav {
@@ -68,6 +69,9 @@
 }
 
 .sidebarNotice {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   padding: 12px 20px;
   font-size: 11px;
   color: var(--warning-amber);
@@ -85,6 +89,9 @@
 
 .demoBanner {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 10px 24px;
   background: #FFFBEB;
   border-bottom: 1px solid var(--warning-amber);
