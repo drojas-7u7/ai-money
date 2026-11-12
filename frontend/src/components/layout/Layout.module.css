@@ -16,6 +16,10 @@
   padding: 24px 0 16px;
 }
 
+.sidebarTop {
+  display: none;
+}
+
 .brand {
   padding: 0 20px 24px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -56,7 +60,6 @@
   color: #ffffff;
 }
 
-/* texto oscuro sobre fondo cian — regla de accesibilidad */
 .navItemActive {
   background: var(--cyan-accent);
   color: var(--nav-dark);
@@ -95,7 +98,7 @@
   gap: 8px;
   padding: 6px 12px;
   margin: 0 12px 4px;
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
   border-radius: 8px;
 }
 
@@ -160,16 +163,126 @@
   min-height: 0;
 }
 
+/* ── Mobile bar (hamburger) ── */
+.mobileBar {
+  display: none;
+}
+
+.overlay {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+}
+
+.closeDrawer {
+  display: none;
+}
+
+/* ── Responsive ── */
 @media (max-width: 768px) {
-  .root { flex-direction: column; height: auto; min-height: 100vh; overflow: auto; }
-  .sidebar { width: 100%; flex-direction: row; padding: 10px 12px; align-items: center; flex-wrap: wrap; gap: 4px; }
-  .brand { padding: 0 8px 0 0; border-bottom: none; border-right: 1px solid rgba(255,255,255,0.1); }
-  .logo { max-width: 36px; }
-  .nav { flex-direction: row; flex: 1; padding: 0 4px; gap: 2px; overflow-x: auto; }
-  .navItem { white-space: nowrap; padding: 8px 12px; font-size: 13px; width: auto; }
-  .homeButton { margin: 0; padding: 8px 12px; font-size: 13px; }
-  .profileChip { margin: 0; padding: 4px 8px; }
-  .sidebarNotice { display: none; }
-  .main { overflow: auto; }
-  .content { overflow-y: visible; }
+  .root {
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Top bar */
+  .mobileBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: var(--nav-dark);
+    flex-shrink: 0;
+    z-index: 20;
+  }
+
+  .mobileLogo {
+    height: 32px;
+    width: auto;
+  }
+
+  .hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  /* Overlay */
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 30;
+  }
+
+  /* Drawer */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 260px;
+    z-index: 40;
+    padding: 0 0 16px;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+
+  .sidebarTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .brand {
+    padding: 0;
+    border-bottom: none;
+  }
+
+  .logo {
+    max-width: 120px;
+  }
+
+  .closeDrawer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  /* Main adjusts for top bar height */
+  .main {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content {
+    flex: 1;
+    overflow-y: auto;
+  }
 }
