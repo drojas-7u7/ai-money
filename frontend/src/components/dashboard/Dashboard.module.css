@@ -1,0 +1,372 @@
+@import '../../styles/variables.css';
+
+.container {
+  padding: 24px;
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Estado vacío ── */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.emptyIcon {
+  color: var(--border-soft);
+}
+
+.emptyTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--header-blue);
+}
+
+.emptySub {
+  font-size: 14px;
+  color: var(--text-main);
+  opacity: 0.6;
+}
+
+/* ── Cabecera ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.greeting {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--header-blue);
+}
+
+.goalPill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  background: var(--cyan-light);
+  border: 1px solid var(--cyan-accent);
+  border-radius: 20px;
+  font-size: 13px;
+  color: var(--header-blue);
+}
+
+/* ── Error ── */
+.errorBanner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #FEF2F2;
+  border: 1px solid var(--alert-red);
+  border-radius: 8px;
+  color: var(--alert-red);
+  font-size: 14px;
+}
+
+/* ── Tarjetas de métricas ── */
+.metricsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.metricCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+}
+
+.cardPositive {
+  border-color: var(--success-green);
+  background: #F0FDF4;
+}
+
+.cardNegative {
+  border-color: var(--alert-red);
+  background: #FEF2F2;
+}
+
+.metricLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-main);
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.metricValue {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.1;
+}
+
+.metricSub {
+  font-size: 12px;
+  color: var(--text-main);
+  opacity: 0.5;
+}
+
+.availableValue {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cardPositive .availableValue { color: var(--success-green); }
+.cardNegative .availableValue { color: var(--alert-red); }
+
+/* ── Skeletons ── */
+.skeletonCard {
+  height: 108px;
+  background: var(--border-soft);
+  border-radius: 12px;
+  opacity: 0.4;
+  animation: pulse 1.4s infinite ease-in-out;
+}
+
+.skeletonText {
+  width: 60px;
+  height: 18px;
+  background: var(--border-soft);
+  border-radius: 4px;
+  opacity: 0.4;
+  animation: pulse 1.4s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.7; }
+}
+
+/* ── Gráfica ── */
+.chartCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+}
+
+.chartTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--header-blue);
+}
+
+.chartBody {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.chartWrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 200px;
+  height: 200px;
+}
+
+.chartCenter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.chartCenterLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-main);
+  opacity: 0.55;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.chartCenterValue {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--header-blue);
+}
+
+/* Tooltip */
+.tooltip {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+  background: var(--nav-dark);
+  border-radius: 6px;
+}
+
+.tooltipName {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+}
+
+.tooltipValue {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Leyenda */
+.legend {
+  flex: 1;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legendDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.legendName {
+  font-size: 13px;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.legendAmount {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--header-blue);
+}
+
+.legendPct {
+  font-weight: 400;
+  color: var(--text-main);
+  opacity: 0.55;
+}
+
+/* ── Tasa de ahorro ── */
+.savingsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+}
+
+.savingsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.savingsLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.savingsRate {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.ratePositive { color: var(--success-green); }
+.rateNegative { color: var(--alert-red); }
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-general);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.6s ease;
+}
+
+.fillPositive { background: var(--success-green); }
+.fillNegative { background: var(--alert-red); }
+
+.rateWarning {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--alert-red);
+}
+
+/* ── Objetivos ── */
+.goalsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+}
+
+.goalsTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--header-blue);
+}
+
+.goalsList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.goalItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-main);
+}
+
+.goalDot {
+  color: var(--cyan-accent);
+  flex-shrink: 0;
+}
