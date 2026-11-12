@@ -7,7 +7,7 @@ pydantic==2.9.2
 python-multipart==0.0.12
 
 # ── IA (chat) ─────────────────────────────────────────────
-anthropic==0.36.2
+groq==0.11.0
 
 # ── Procesado de PDF (nóminas) ───────────────────────────
 pdfplumber==0.11.4
