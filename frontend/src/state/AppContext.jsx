@@ -82,7 +82,8 @@ export function AppProvider({ children }) {
     savings_monthly_contribution: savings?.monthly_contribution ?? null,
   }), [profile, summary, payslip, loan, savings])
 
-  const askChat = useCallback((message) => run(async () => {
+  const askChat = useCallback((rawMessage) => run(async () => {
+    const message = rawMessage.slice(0, MAX_CONTENT) // mismo límite que el esquema
     const history = messages
       .slice(-MAX_HISTORY)
       // La pregunta de comprobación viaja dentro del mensaje del asistente,
