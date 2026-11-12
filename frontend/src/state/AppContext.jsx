@@ -40,7 +40,7 @@ export function AppProvider({ children }) {
   const selectProfile = useCallback((newProfile) => run(async () => {
     const saved = await api.updateProfile(newProfile)
     setProfile(saved)
-    setSummary(await api.getSummary())
+    setSummary(api.addBreakdown(await api.getSummary(), saved))
     setSavings(null)
     setLoan(null)
     setPayslip(null)
