@@ -93,9 +93,6 @@ function Landing({ onEnterDemo }) {
         <p className={styles.heroSubtitle}>
           Tus finanzas no tienen por qué ser complicadas.
         </p>
-        <button className={styles.heroCta} onClick={onEnterDemo}>
-          Empieza a explorar <ArrowRight size={18} />
-        </button>
       </section>
 
       {/* Sobre la app */}

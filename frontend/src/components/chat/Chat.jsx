@@ -2,6 +2,40 @@ import { useState, useRef, useEffect } from 'react'
 import { Send, Bot, User, Loader2, AlertTriangle, MessageSquare } from 'lucide-react'
 import styles from './Chat.module.css'
 
+function renderInline(str) {
+  const parts = str.split(/\*\*(.+?)\*\*/g)
+  return parts.map((part, i) =>
+    i % 2 === 1 ? <strong key={i}>{part}</strong> : part
+  )
+}
+
+function renderMarkdown(text) {
+  const lines = text.split('\n')
+  const elements = []
+  let listItems = []
+  let key = 0
+
+  const flushList = () => {
+    if (listItems.length > 0) {
+      elements.push(<ul key={key++} className={styles.mdList}>{listItems}</ul>)
+      listItems = []
+    }
+  }
+
+  for (const line of lines) {
+    if (/^[-*] /.test(line)) {
+      listItems.push(<li key={key++}>{renderInline(line.slice(2))}</li>)
+    } else {
+      flushList()
+      if (line.trim() !== '') {
+        elements.push(<p key={key++} className={styles.mdPara}>{renderInline(line)}</p>)
+      }
+    }
+  }
+  flushList()
+  return elements
+}
+
 function Message({ msg }) {
   const isUser = msg.role === 'user'
   return (
@@ -10,7 +44,10 @@ function Message({ msg }) {
         {isUser ? <User size={16} /> : <Bot size={16} />}
       </div>
       <div className={`${styles.bubble} ${isUser ? styles.bubbleUser : styles.bubbleBot}`}>
-        <p className={styles.bubbleText}>{msg.content}</p>
+        {isUser
+          ? <p className={styles.bubbleText}>{msg.content}</p>
+          : <div className={styles.bubbleText}>{renderMarkdown(msg.content)}</div>
+        }
         {msg.check_question && (
           <p className={styles.checkQuestion}>{msg.check_question}</p>
         )}
