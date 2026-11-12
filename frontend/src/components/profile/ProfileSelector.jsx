@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { AlertTriangle, Target, TrendingUp, TrendingDown, PlusCircle, X, CheckCircle2, XCircle } from 'lucide-react'
+import { useAppState } from '../../state/AppContext'
 import styles from './ProfileSelector.module.css'
 import profiles from '../../data/perfiles.json'
 
@@ -84,6 +85,7 @@ function getLevel(score) {
 }
 
 function ProfileSelector({ activeProfileId = null, onSelectProfile, isLoading = false, error = null }) {
+  const { submitQuiz } = useAppState()
   const [view, setView] = useState('grid') // 'grid' | 'form' | 'quiz' | 'result'
   const [form, setForm] = useState(EMPTY_FORM)
   const [formError, setFormError] = useState(null)
@@ -91,6 +93,7 @@ function ProfileSelector({ activeProfileId = null, onSelectProfile, isLoading = 
   const [currentQ, setCurrentQ] = useState(0)
   const [selected, setSelected] = useState(null) // índice seleccionado en pregunta actual
   const [score, setScore] = useState(0)
+  const [allAnswers, setAllAnswers] = useState({})
 
   /* ── Form ── */
   const handleChange = (e) => {
@@ -137,7 +140,11 @@ function ProfileSelector({ activeProfileId = null, onSelectProfile, isLoading = 
     if (selected !== null) return // ya respondió esta pregunta
     setSelected(optionIndex)
 
-    const isCorrect = optionIndex === QUESTIONS[currentQ].correct
+    const q = QUESTIONS[currentQ]
+    const newAnswers = { ...allAnswers, [q.id]: optionIndex }
+    setAllAnswers(newAnswers)
+
+    const isCorrect = optionIndex === q.correct
     const newScore = score + (isCorrect ? 1 : 0)
 
     setTimeout(() => {
@@ -153,7 +160,8 @@ function ProfileSelector({ activeProfileId = null, onSelectProfile, isLoading = 
   }
 
   /* ── Result → entrar al demo ── */
-  const handleEnterDemo = () => {
+  const handleEnterDemo = async () => {
+    await submitQuiz('pre', allAnswers) // guarda score en AppContext → llega al chat como financial_level
     onSelectProfile(pendingProfile)
   }
 

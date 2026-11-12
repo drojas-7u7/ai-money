@@ -34,6 +34,7 @@ CONTEXT_LABELS = {
     "payslip_net": "Salario neto de la nómina de ejemplo (€)",
     "loan_monthly_payment": "Cuota mensual del préstamo simulado (€)",
     "savings_monthly_contribution": "Aportación mensual del plan de ahorro (€)",
+    "financial_level": "Nivel de conocimiento financiero del usuario",
 }
 
 
